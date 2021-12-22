@@ -39,9 +39,9 @@ if __name__ == '__main__':
     import time
     s = time.time()
 
-    input_files = glob.glob('*.rst')
+    input_files = glob.glob('data/*.rst')
     
-    mapper = SimpleMapReduce(file_to_words, count_words, 2)
+    mapper = SimpleMapReduce(file_to_words, count_words, 1)
     print(input_files)
     word_counts = mapper(input_files)
     word_counts.sort(key=operator.itemgetter(1))
