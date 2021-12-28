@@ -38,5 +38,8 @@ if __name__ == '__main__':
         word_counts += grequests.map(rs)[i].json()["value"]
     word_counts.sort(key=operator.itemgetter(1))
     word_counts.reverse()
-    print(word_counts)
+    top20 = word_counts[:20]
+    longest = max(len(word) for word, count in top20)
+    for word, count in top20:
+        print ('%-*s: %5s' % (longest+1, word, count))
     print(time.time()-start)
