@@ -1,12 +1,12 @@
 import grequests
-import glob
+import os
 import multiprocessing 
 import itertools
 import collections
 import time
 import json
 import operator
-    
+from pathlib import Path
 def partition( mapped_values):
     """Organize the mapped values by their key.
     Returns an unsorted sequence of tuples with a key and a sequence of values.
@@ -17,8 +17,10 @@ def partition( mapped_values):
     return list(partitioned_data.items())
 if __name__ == '__main__':
     start = time.time()
-    input_files = glob.glob('data/*.rst')
-    ports = [5000,5001]
+    root = "corpus"
+    input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
+    print(input_files)
+    ports = [5000,8000]
     num_ports = len(ports)
     response = []
     n = len(input_files)

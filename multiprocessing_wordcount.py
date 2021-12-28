@@ -1,6 +1,7 @@
 import multiprocessing
 import string
-
+import os
+from pathlib import Path
 from mapreduce import SimpleMapReduce
 
 def file_to_words(filename):
@@ -13,12 +14,12 @@ def file_to_words(filename):
     TR = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
     print (multiprocessing.current_process().name, 'reading', filename)
     output = []
-    with open(filename, 'rt',encoding="utf-8") as f:
+    with open(filename, 'r',encoding='iso-8859-1') as f:
         for line in f:
             if line.lstrip().startswith('..'): # Skip rst comment lines
                 continue
             line = line.translate(TR) # Strip punctuation
-            for word in line.split():
+            for word in line.split()[8:]:
                 word = word.lower()
                 if word.isalpha() and word not in STOP_WORDS:
                     output.append( (word, 1) )
@@ -39,10 +40,9 @@ if __name__ == '__main__':
     import time
     s = time.time()
 
-    input_files = glob.glob('data/*.rst')
-    
-    mapper = SimpleMapReduce(file_to_words, count_words, 1)
-    print(input_files)
+    root = "corpus"
+    input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
+    mapper = SimpleMapReduce(file_to_words, count_words, None)
     word_counts = mapper(input_files)
     word_counts.sort(key=operator.itemgetter(1))
     word_counts.reverse()
