@@ -39,6 +39,9 @@ def map():
 def reduce():
     data = request.json["value"]
     return {"value":[reduce_func(ele) for ele in data]}
+@app.route("/test")
+def test():
+    return {"value":"test"}
 
 if __name__ == "__main__":
     app.run()
