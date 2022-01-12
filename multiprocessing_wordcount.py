@@ -40,9 +40,9 @@ if __name__ == '__main__':
     import time
     s = time.time()
 
-    root = "corpus"
+    root = "data"
     input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
-    mapper = SimpleMapReduce(file_to_words, count_words, None)
+    mapper = SimpleMapReduce(file_to_words, count_words, 2)
     word_counts = mapper(input_files)
     word_counts.sort(key=operator.itemgetter(1))
     word_counts.reverse()

@@ -38,7 +38,7 @@ if __name__ == '__main__':
     import glob
     import time
     s = time.time()
-    root = "corpus"
+    root = "data"
     input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
     map_responses = []
     for name in input_files:
