@@ -4,7 +4,7 @@ f.close()
 seg = 8
 seg_block = len(lines)//8
 for i in range(seg):
-	with open("%d.txt"%(i),"w",encoding='iso-8859-1') as f:
+	with open("data1/%d.txt"%(i),"w",encoding='iso-8859-1') as f:
 		if i == seg-1:
 			f.write("\n".join(line for line in lines[seg_block*(seg-1):]))
 		else:
