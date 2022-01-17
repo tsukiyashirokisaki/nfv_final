@@ -11,6 +11,6 @@ RUN apt-get install git -y
 RUN apt-get install python3-pip -y
 RUN pip3 install flask
 RUN pip3 install python-dotenv
-RUN echo "566"
+RUN echo "567"
 RUN git clone https://github.com/tsukiyashirokisaki/nfv_final
 CMD cd nfv_final && flask run --host=0.0.0.0
