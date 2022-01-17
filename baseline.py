@@ -39,7 +39,8 @@ if __name__ == '__main__':
     import time
     s = time.time()
     root = "data"
-    input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
+    input_files = [Path(os.path.join(root,ele)) for ele in os.listdir(root)]
+    # print(input_files)
     map_responses = []
     for name in input_files:
         map_responses += file_to_words(name)

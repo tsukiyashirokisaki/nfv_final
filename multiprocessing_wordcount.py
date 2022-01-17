@@ -14,12 +14,12 @@ def file_to_words(filename):
     TR = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
     print (multiprocessing.current_process().name, 'reading', filename)
     output = []
-    with open(filename, 'r',encoding='iso-8859-1') as f:
+    with open(filename, 'rt',encoding='iso-8859-1') as f:
         for line in f:
             if line.lstrip().startswith('..'): # Skip rst comment lines
                 continue
             line = line.translate(TR) # Strip punctuation
-            for word in line.split()[8:]:
+            for word in line.split():
                 word = word.lower()
                 if word.isalpha() and word not in STOP_WORDS:
                     output.append( (word, 1) )
