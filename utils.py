@@ -15,7 +15,7 @@ def file_to_words(filename):
             if line.lstrip().startswith('..'): # Skip rst comment lines
                 continue
             line = line.translate(TR) # Strip punctuation
-            for word in line.split()[8:]:
+            for word in line.split():
                 word = word.lower()
                 if word.isalpha() and word not in STOP_WORDS:
                     output.append( (word, 1) )

@@ -7,14 +7,7 @@ import time
 import json
 import operator
 from pathlib import Path
-def partition( mapped_values):
-    """Organize the mapped values by their key.
-    Returns an unsorted sequence of tuples with a key and a sequence of values.
-    """
-    partitioned_data = collections.defaultdict(list)
-    for key, value in mapped_values:
-        partitioned_data[key].append(value)
-    return list(partitioned_data.items())
+from utils import partition
 if __name__ == '__main__':
     start = time.time()
     root = "data"
