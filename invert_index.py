@@ -5,15 +5,11 @@ from pathlib import Path
 from multiprocessing import Process, Manager
 import itertools
 import collections
-def hash2code(s):
-    h = 0
-    for c in s:
-        h = (31 * h + ord(c)) & 0xFFFFFFFF
-    return ((h + 0x80000000) & 0xFFFFFFFF) - 0x80000000
+from utils import hash2code
 
 def file_to_words(filename):
     TR = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    print (multiprocessing.current_process().name, 'reading', filename)
+    # print (multiprocessing.current_process().name, 'reading', filename)
     key = set()
     output = []
     with open(filename, 'r',encoding='iso-8859-1') as f:
@@ -62,12 +58,18 @@ if __name__ == '__main__':
     import operator
     import glob
     import time
+    import sys
     s = time.time()
-    root = "data"
+    root = sys.argv[1]
+    out_folder = sys.argv[2]
+    cores = int(sys.argv[3])
+    f = open("%s/mapreduce_%d.txt"%(out_folder,cores),"a")
     input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
-    mapper = InvertMapReduce(file_to_words, to_invert_index, 2)
+    mapper = InvertMapReduce(file_to_words, to_invert_index, cores)
     invert_index = mapper(input_files)
-    print(len(invert_index))
-    for word in invert_index[:10]:
-        print(word,"\n")
-    print(time.time()-s)
+    # print(len(invert_index))
+    # for word in invert_index[:10]:
+    #     print(word,"\n")
+    # print(time.time()-s)
+    f.write("%.5f\n"%(time.time()-s))
+    f.close()    

@@ -1,4 +1,7 @@
-f = open("movie_lines.txt","r",encoding='iso-8859-1')
+import sys
+in_file = sys.argv[1] #movie_lines.txt
+out_folder = sys.argv[2] #data
+f = open(in_file,"r",encoding='iso-8859-1')
 lines = f.read().split("\n")
 f.close()
 seg = 8

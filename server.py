@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 import string
 import json
-from utils import file_to_words,count_words
+from mapreduce import file_to_words,count_words
 
 app = Flask(__name__)
 map_func = file_to_words
@@ -14,7 +14,7 @@ def map():
 @app.route("/reduce",methods=["POST"])
 def reduce():
     data = request.json["value"]
-    return {"value":[reduce_func(ele) for ele in data]}
+    return {"value":reduce_func(data)}
 @app.route("/test")
 def test():
     return {"value":"test"}
