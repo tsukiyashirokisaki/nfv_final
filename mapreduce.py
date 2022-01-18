@@ -23,12 +23,12 @@ def file_to_words(filename):
                     # if word not in key:
                         # output.append( (word, filename) )
                         # key.add(word)
-    return list(output.items())
+    return list(output.items()) #[[apple:1],[banana:2]]
 def count_words(partitioned_data):
     reduce_data = collections.defaultdict(int)
     for (key,value) in partitioned_data:
         reduce_data[key] += value
-    return list(reduce_data.items())
+    return list(reduce_data.items()) #[[apple:10],[banana:28]]
 class MapReduce(object):
     
     def __init__(self, map_func, reduce_func, num_workers=None):
@@ -67,14 +67,14 @@ if __name__ == '__main__':
     input_files = [Path(os.path.join(root,ele)).as_posix() for ele in os.listdir(root)]
     mapper = MapReduce(file_to_words, count_words, cores)
     word_counts = mapper(input_files)
-    # word_counts.sort(key=operator.itemgetter(1))
-    # word_counts.reverse()
+    word_counts.sort(key=operator.itemgetter(1))
+    word_counts.reverse()
     
-    # print ('\nTOP 20 WORDS BY FREQUENCY\n')
-    # top20 = word_counts[:20]
-    # longest = max(len(word) for word, count in top20)
-    # for word, count in top20:
-    #     print ('%-*s: %5s' % (longest+1, word, count))
-    # print(time.time()-s)
+    print ('\nTOP 20 WORDS BY FREQUENCY\n')
+    top20 = word_counts[:20]
+    longest = max(len(word) for word, count in top20)
+    for word, count in top20:
+        print ('%-*s: %5s' % (longest+1, word, count))
+    print(time.time()-s)
     f.write("%.5f\n"%(time.time()-s))
     f.close()    

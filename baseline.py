@@ -23,13 +23,14 @@ if __name__ == '__main__':
     word_counts = collections.defaultdict(int)
     for key, value in word_list:
         word_counts[key] += value
-    # word_counts = list(word_counts.items())
-    # word_counts.sort(key=operator.itemgetter(1))
-    # word_counts.reverse()
-    # top20 = word_counts[:20]
-    # longest = max(len(word) for word, count in top20)
-    # for word, count in top20:
-    #     print ('%-*s: %5s' % (longest+1, word, count))
-    # print ('\nTOP 20 WORDS BY FREQUENCY\n')
+    word_counts = list(word_counts.items())
+    word_counts.sort(key=operator.itemgetter(1))
+    word_counts.reverse()
+    top20 = word_counts[:20]
+    longest = max(len(word) for word, count in top20)
+    for word, count in top20:
+        print ('%-*s: %5s' % (longest+1, word, count))
+    print ('\nTOP 20 WORDS BY FREQUENCY\n')
+    print(time.time()-s)
     f.write("%.5f\n"%(time.time()-s))
     f.close()    
