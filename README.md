@@ -23,7 +23,7 @@ The result file will be dumped at `wc/cornell/mapreduce_8.txt`
 
 3. Performance on Cornell Corpus Dataset
 
-![wc_cornell](\plot\wc_cornell.png)
+<img src="https://github.com/tsukiyashirokisaki/nfv_final/blob/main/plot/wc_cornell.png?raw=true"/>
 
 ### Inverted Index
 
@@ -44,7 +44,7 @@ The result file will be dumped at `inv/cornell/mapreduce_8.txt`
 
 3. Performance on Cornell Dataset
 
-![inv_cornell](plot\inv_cornell.png)
+<img src="https://github.com/tsukiyashirokisaki/nfv_final/blob/main/plot/inv_cornell.png?raw=true"/>
 
 ## Distributed ONOS
 
@@ -60,7 +60,7 @@ The result file will be dumped at `inv/cornell/mapreduce_8.txt`
 
 3. Booting ONOS by following the instruction in [ONOS tutorial website](https://wiki.onosproject.org/display/ONOS/Basic+ONOS+Tutorial)
 
-4. Open  mininet through
+5. Open  mininet through
 
    ```
    sudo python nfv_final/donos/topos/topo.py $OC1 $OC2 $OC3
